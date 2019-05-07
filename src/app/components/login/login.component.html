@@ -1,0 +1,70 @@
+<div class="displayTable">
+  <div class="displayTableCell">
+    <div class="authBlock">
+      <div *ngIf="authService.currentUser | async; else showLogin">
+        <h3 text-center>You're in!</h3>
+        <div class="formGroup">
+          <input
+            type="button"
+            class="btn btnPrimary"
+            value="Go to your dashboard"
+            [routerLink]="['/customers']"
+          />
+        </div>
+        <div class="formGroup">
+          <input
+            type="button"
+            class="btn btnSecondary"
+            value="Logout"
+            (click)="logout()"
+          />
+        </div>
+      </div>
+      <ng-template #showLogin>
+        <h3>Sign In</h3>
+        <form [formGroup]="loginForm">
+          <div class="formGroup">
+            <input
+              type="text"
+              class="formControl"
+              formControlName="email"
+              placeholder="Email"
+              #userName
+              required
+            />
+            <div
+              *ngIf="email.invalid && email.dirty"
+              class="notification error-color"
+            >
+              Please enter a valid email address
+            </div>
+          </div>
+          <div class="formGroup">
+            <input
+              type="password"
+              class="formControl"
+              formControlName="password"
+              placeholder="Password"
+              #userPassword
+              required
+            />
+            <div
+              *ngIf="password.invalid && password.dirty"
+              class="notification error-color"
+            >
+              Please enter a password
+            </div>
+          </div>
+          <div class="formGroup">
+            <input
+              type="button"
+              class="btn btnPrimary"
+              value="Log in"
+              (click)="login()"
+            />
+          </div>
+        </form>
+      </ng-template>
+    </div>
+  </div>
+</div>
