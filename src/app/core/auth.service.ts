@@ -50,9 +50,10 @@ export class AuthService {
       .then(res => {
         localStorage.setItem('user', JSON.stringify(res.user));
         this.router.navigate(['/customers']);
+        return res.user;
       })
       .catch(err => {
-        window.alert(err.message);
+        throw (err.message);
       });
   }
 
