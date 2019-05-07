@@ -1,0 +1,74 @@
+<!-- Top navigation -->
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/customers">
+      <img class="brand-logo" src="assets/directory.svg" alt="Directory Logo">
+      <span class="dasboard-text">Customer Dashboard</span>
+    </a>
+    <a class="col-sm-3 col-md-2 mr-0" (click)="authService.logout()">
+      <span class="dasboard-text">Logout</span>
+    </a>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container-fluid">
+      <div class="row">
+
+      <!-- Main content -->
+      <main role="main" class="col-md-12 ml-sm-auto col-lg-12">
+        <div class="inner-adjust">
+
+          <div class="pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Directory</h1>
+          </div>
+          <!-- Show user data when logged in -->
+          <div class="row" *ngIf="authService.currentUser as user">
+            <div class="col-md-12">
+              <div class="media">
+                <div class="media-body">
+                    <div class="row">
+                        <div class="col-md-12 mx-auto">
+                          <div class="md-form">
+                            <input type="text" placeholder="Search / Filter" [(ngModel)]="searchQuery" class="form-control" id="search" mdbInput>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="table-responsive">
+                    <table *ngIf="customers && customers.length" mdbTable class="z-depth-1">
+                        <thead>
+                        <tr>
+                          <th [mdbTableSort]="customers" sortBy=""></th>
+                          <th [mdbTableSort]="customers" sortBy="name">Name</th>
+                          <th [mdbTableSort]="customers" sortBy="email">Email</th>
+                          <th [mdbTableSort]="customers" sortBy="city">Location</th>
+                          <th [mdbTableSort]="customers" sortBy="createdAt">Created Date</th>
+                          <th [mdbTableSort]="customers" sortBy="status">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let customer of customers; let i = index">
+                           <th> <img class="align-self-start img-directory-thumbnail rounded-circle" src="{{(customer.imageUrl) ? customer.imageUrl : '/assets/enterprise.svg'}}"
+                            alt=""></th>
+                          <th scope="row" [routerLink]="['/customer-details', customer.id]">{{customer.name}}</th>
+                          <td [routerLink]="['/customer-details', customer.id]">{{customer.email}}</td>
+                          <td [routerLink]="['/customer-details', customer.id]"> {{customer.city}}, {{customer.country}}</td>
+                          <td [routerLink]="['/customer-details', customer.id]">{{customer.createdAt.seconds * 1000 | date:'medium'}} </td>
+                          <td style="padding-right:1em;"><select slot="end" class='select-css'
+                            (change)="changingValue($event, customer)" [(ngModel)]='customer.status'>
+                            <option value='prospective'>prospective</option>
+                            <option value='current'>current</option>
+                            <option value='non-active'>non-active</option>
+                          </select></td>
+                        </tr>
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+
+    </div>
+  </div>
