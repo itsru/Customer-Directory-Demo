@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './core/app-routing.module';
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthService } from './core/auth.service';
 
 // Angular Toast
@@ -19,7 +19,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { CustomerDetailsComponent } from './components/customers/customer-details.component';
 import { NoteDetailsComponent } from './components/note-details/note-details.component';
-
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -32,12 +32,14 @@ import { NoteDetailsComponent } from './components/note-details/note-details.com
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule.enablePersistence(),
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MDBBootstrapModule.forRoot()
   ],
   providers: [
     AuthService
