@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/customer-directory-demo/",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
