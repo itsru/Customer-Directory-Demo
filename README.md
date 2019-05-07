@@ -2,8 +2,8 @@
 
 ### Stack used
 
-Angular 7 - Framework, Router, State management
-Firebase - Authentication, data store
+1. Angular 7 - Framework, Router, State management
+2. Firebase - Authentication, data store
 
 ### A demo is visible at 
 
