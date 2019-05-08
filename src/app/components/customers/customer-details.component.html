@@ -79,7 +79,7 @@
             class="btn waves-light"
             data-toggle="modal"
             data-target="#basicExample"
-            (click)="setModalTitle('Add a Note'); noteModal.show()"
+            (click)="cancelAddEdit(); setModalTitle('Add a Note'); noteModal.show()"
             mdbWavesEffect
           >
             <i class="far fa-plus-square"></i> Add a Note
@@ -134,7 +134,7 @@
   tabindex="-1"
   role="dialog"
   aria-labelledby="myModalLabel"
-  aria-hidden="true"
+  aria-hidden="true" data-keyboard="false" data-backdrop="static"
 >
   <div class="modal-dialog modal-notify modal-info" role="document">
     <div class="modal-content">
@@ -145,7 +145,7 @@
           class="close"
           data-dismiss="modal"
           aria-label="Close"
-          (click)="noteModal.hide()"
+          (click)="noteModal.hide(); cancelAddEdit()"
         >
           <span aria-hidden="true" class="white-text">×</span>
         </button>
@@ -175,30 +175,9 @@
         </div>
       </div>
       <div class="modal-footer justify-content-center">
-        <a
-          type="button"
-          class="btn btn-outline-secondary-modal"
-          data-dismiss="modal"
-          (click)="noteModal.hide(); noteForm.reset()"
-          mdbWavesEffect
-          >Cancel</a
-        >
-        <a
-          *ngIf="editingNote"
-          type="button"
-          class="btn btn-primary-modal waves-light"
-          (click)="noteModal.hide(); updateNote()"
-          mdbWavesEffect
-          >Save Edit</a
-        >
-        <a
-          *ngIf="!editingNote"
-          type="button"
-          class="btn btn-primary-modal waves-light"
-          (click)="noteModal.hide(); addNote()"
-          mdbWavesEffect
-          >Save</a
-        >
+        <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="noteModal.hide(); cancelAddEdit()" mdbWavesEffect>Cancel</a>
+        <a *ngIf="editingNote" type="button" class="btn btn-primary-modal waves-light" (click)="noteModal.hide(); updateNote()" mdbWavesEffect>Save Edit</a>
+        <a *ngIf="!editingNote" type="button" class="btn btn-primary-modal waves-light" (click)="noteModal.hide(); addNote()" mdbWavesEffect>Save</a>
       </div>
     </div>
   </div>

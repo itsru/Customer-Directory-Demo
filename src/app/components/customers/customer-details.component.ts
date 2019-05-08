@@ -88,6 +88,11 @@ export class CustomerDetailsComponent implements OnInit, OnDestroy {
     this.modalTitle = title;
   }
 
+  cancelAddEdit() {
+    this.editingNote = null;
+    this.noteForm.reset();
+  }
+
   editNote(note: Note) {
     this.setModalTitle('Editing a Note');
     this.editingNote = note;
@@ -96,10 +101,15 @@ export class CustomerDetailsComponent implements OnInit, OnDestroy {
   }
 
   updateNote() {
-    this.editingNote.title = this.noteForm.controls.title.value;
-    this.editingNote.text = this.noteForm.controls.text.value;
+    const tempNote: Note = {
+      id: this.editingNote.id,
+      title: this.noteForm.controls.title.value,
+      text: this.noteForm.controls.text.value,
+      createdAt: this.editingNote.createdAt
+    };
+    this.editingNote = null;
     this.notesService
-      .updateNote(this.editingNote, this.customerId)
+      .updateNote(tempNote, this.customerId)
       .then(res => {
         if (res) {
           this.toastr.success('Edited Note');
@@ -115,12 +125,12 @@ export class CustomerDetailsComponent implements OnInit, OnDestroy {
       title: this.noteForm.controls.title.value,
       text: this.noteForm.controls.text.value
     };
+    this.noteForm.reset();
     this.notesService.addNote(tempNote, this.customerId).then(res => {
       if (res) {
-        this.toastr.success('Added Note');
-        this.noteForm.reset();
+        this.toastr.success(`Added Note: ${tempNote.title}`);
       } else {
-        this.toastr.warning('Error adding the note');
+        this.toastr.warning(`Error adding the note: ${tempNote.title}`);
       }
     });
   }
