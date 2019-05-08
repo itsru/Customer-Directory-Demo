@@ -519,8 +519,6 @@ body .table thead th {
 }
 .select-css:focus {
 	border-color: #aaa;
-	box-shadow: 0 0 1px 3px rgba(61, 92, 124, 0.7);
-	box-shadow: 0 0 0 3px -moz-mac-focusring;
 	color: #222;
 	outline: none;
 }
@@ -559,11 +557,6 @@ body .table thead th {
 
 /* Responsive */
 @media(max-width:767px) {
-  .sidebar {
-    position: static;
-    padding: 40px 0 10px;
-    height: auto;
-  }
 
   [role="main"] {
     padding-top: 0;
@@ -655,6 +648,8 @@ body .table thead th {
 body {
   background-color: #eee;
 }
+
+:focus { outline: none; }
 
 .accordion .card {
   margin-bottom: 1.2rem;
