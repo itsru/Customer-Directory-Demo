@@ -16,6 +16,12 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+ }
+
 .feather {
   width: 16px;
   height: 16px;
@@ -126,6 +132,10 @@ input:-ms-input-placeholder {
 
 input:-moz-placeholder {
   color: #BBBBBB
+}
+
+.noteBtn{
+  padding: .64rem .3rem .64rem .7rem !important;
 }
 
 .displayTable .btn {

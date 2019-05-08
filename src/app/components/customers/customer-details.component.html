@@ -78,7 +78,7 @@
             type="button"
             class="btn waves-light"
             data-toggle="modal"
-            data-target="#basicExample"
+            data-target="#basicNote"
             (click)="cancelAddEdit(); setModalTitle('Add a Note'); noteModal.show()"
             mdbWavesEffect
           >
@@ -94,16 +94,16 @@
                   Note {{ i + 1 }}: {{ note.title }}
                   <button
                     (click)="deleteNote(note.id)"
-                    class="float-right"
+                    class="btn float-right noteBtn"
                     mdbBtn
                   >
                     <i class="fas fa-trash-alt"></i>
                   </button>
                   <button
                     type="button"
-                    class="btn waves-light float-right"
+                    class="btn float-right noteBtn"
                     data-toggle="modal"
-                    data-target="#basicExample"
+                    data-target="#basicNote"
                     (click)="editNote(note); noteModal.show()"
                     mdbWavesEffect
                   >
