@@ -1,0 +1,133 @@
+<!-- Top navigation -->
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/customers">
+    <img class="brand-logo" src="assets/directory.svg" alt="Directory Logo" />
+    <span class="dasboard-text">Back to Customer Dashboard</span>
+  </a>
+  <a class="col-sm-3 col-md-2 mr-0" (click)="authService.logout()">
+    <span class="dasboard-text">Logout</span>
+  </a>
+</nav>
+<body class="fixed-sn light-blue-skin">
+  <main class="mt-5 pt-5">
+    <div class="container">
+      <!-- jumbotron -->
+      <div class="jumbotron text-center hoverable">
+        <div *ngIf="customer" class="row">
+          <div class="col-md-4 offset-md-1 mx-3 my-3">
+            <div class="view">
+              <img
+                src="{{
+                  customer.imageUrl
+                    ? customer.imageUrl
+                    : '/assets/enterprise.svg'
+                }}"
+                class="img-fluid details-logo"
+                alt="Logo"
+              />
+            </div>
+          </div>
+          <div class="col-md-7 text-md-left ml-3 mt-3">
+            <a class="green-text">
+              <h6 class="h6 pb-1">
+                <i class="far fa-bookmark pr-1"></i>Status:
+                {{ customer.status }}
+              </h6>
+            </a>
+
+            <h4 class="h4 mb-4">{{ customer.name }}</h4>
+
+            <p class="font-weight-normal">
+              <a (click)="phone()"
+                ><strong>Phone: </strong> {{ customer.phone }}</a
+              >
+            </p>
+            <p class="font-weight-normal">
+              <a (click)="email()"
+                ><strong>Email: </strong> {{ customer.email }}</a
+              >
+            </p>
+            <p class="font-weight-normal">
+              <strong>Address: </strong> {{ customer.street }},
+              {{ customer.city }}, {{ customer.postcode }},
+              {{ customer.country }}.
+            </p>
+            <p class="font-weight-normal">
+              Added {{ customer.createdAt.seconds * 1000 | date: "medium" }}
+            </p>
+            <p>
+              <select
+                slot="end"
+                class="select-css"
+                (change)="changingValue($event, customer)"
+                [(ngModel)]="customer.status"
+              >
+                <option value="prospective">prospective</option>
+                <option value="current">current</option>
+                <option value="non-active">non-active</option>
+              </select>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container py-5">
+        <h2>Notes <button type="button" class="btn waves-light" data-toggle="modal" data-target="#basicExample" (click)="setModalTitle('Add a Note'); noteModal.show()"
+          mdbWavesEffect><i class="far fa-plus-square"></i> Add a Note</button>
+        </h2>
+
+        <div *ngFor="let note of notes; let i = index" class="padding-bottom">
+          <div class="">
+            <mdb-card>
+              <mdb-card-header>
+                <h4>Note {{ i + 1 }}: {{ note.title }}
+                  <button (click)="deleteNote(note.id)" class="float-right" mdbBtn ><i class="fas fa-trash-alt"></i></button>
+                  <button type="button" class="btn waves-light float-right" data-toggle="modal" data-target="#basicExample" (click)="editNote(note); noteModal.show()"
+          mdbWavesEffect><i class="fas fa-pencil-alt"></i></button>
+                </h4>
+              </mdb-card-header>
+              <mdb-card-body>
+                <mdb-card-text class="padding-bottom"
+                  >{{ note.text }}
+                </mdb-card-text>
+              </mdb-card-body>
+            </mdb-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+<!-- Add Modal -->
+<div mdbModal #noteModal="mdb-modal" class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-notify modal-info" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <p class="heading lead">{{modalTitle}}</p>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="noteModal.hide()">
+        <span aria-hidden="true" class="white-text">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="text-center">
+        <form [formGroup]="noteForm">
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="title" id="noteTitle" placeholder="Note Title"/>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" id="noteText" formControlName="text" rows="5" placeholder="Add a note here"></textarea>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer justify-content-center">
+        <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="noteModal.hide(); noteForm.reset()" mdbWavesEffect>Cancel</a>
+      <a *ngIf="editingNote" type="button" class="btn btn-primary-modal waves-light" (click)="noteModal.hide(); updateNote();" mdbWavesEffect>Save Edit</a>
+      <a *ngIf="!editingNote" type="button" class="btn btn-primary-modal waves-light" (click)="noteModal.hide(); addNote()" mdbWavesEffect>Save</a>
+    </div>
+  </div>
+</div>
+</div>
+
