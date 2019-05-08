@@ -20,6 +20,8 @@ import { CustomersComponent } from './components/customers/customers.component';
 import { CustomerDetailsComponent } from './components/customers/customer-details.component';
 import { NoteDetailsComponent } from './components/note-details/note-details.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { FooterComponent } from './components/shared/footer/footer.component';
+// import { ModalComponent } from './components/shared/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     LoginComponent,
     CustomersComponent,
     CustomerDetailsComponent,
-    NoteDetailsComponent
+    NoteDetailsComponent,
+    FooterComponent,
+    // ModalComponent
   ],
   imports: [
     BrowserModule,

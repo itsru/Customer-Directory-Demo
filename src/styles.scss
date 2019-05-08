@@ -50,15 +50,8 @@ h6 {
   font-weight: 600;
 }
 
-.px-logo {
-  display: block;
-  clear: both;
-  margin: 0 auto 20px;
-  width: 220px;
-}
-
-.px-logo a img {
-  width: 100%;
+.padding-bottom {
+  padding-bottom: 2em;
 }
 
 .displayTable {
@@ -285,8 +278,8 @@ input:-moz-placeholder {
 }
 
 .sidebar .nav-link.active,
-.sidebar a:hover,
-a:not([href]):not([tabindex]):focus,
+.sidebar a:hover, .sidebar
+a:not([href]):not([tabindex]):focus, .sidebar
 a:not([href]):not([tabindex]):hover {
   color: #32364d;
   background: #ffffff00;
@@ -333,6 +326,8 @@ a:not([href]):not([tabindex]):hover {
 
 .form-control:focus {
   border-color: #00BCD4;
+
+  border-color: rgb(212, 0, 117);
   box-shadow: none;
 }
 
@@ -530,6 +525,21 @@ body .table thead th {
   -o-object-fit: cover;
 }
 
+.details-logo {
+  max-height: 600px;
+  object-fit: cover;
+  zoom: 200%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  display: inline-block;
+  width: 500px;
+  height: 140px;
+}
+
+.table th, .table td {
+  vertical-align: middle !important;
+}
+
 .select-css {
 	display: block;
 	color: #444;
@@ -705,13 +715,23 @@ body .table thead th {
   .authBlock {
     box-shadow: none
   }
-
-  .px-logo {
-    display: none;
-  }
 }
 
 // Notes
 // Smaller than 1165 remove phone
 // Smaller than 965 remove  Created Date
 // Smaller than 768 remove Location
+
+
+body {
+  background-color: #eee;
+}
+
+.accordion .card {
+  margin-bottom: 1.2rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.accordion .card .card-body {
+  border-top: 1px solid #eee;
+}

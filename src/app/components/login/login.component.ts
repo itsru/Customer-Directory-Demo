@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         this.toastr.success('Logged in succesfully');
       }
     }, err => {
-      this.toastr.warning(err.message, 'Login Error');
+      this.toastr.warning(err, 'Login Error');
     });
   }
 
