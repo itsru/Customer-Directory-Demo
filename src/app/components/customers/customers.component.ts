@@ -5,6 +5,7 @@ import { CustomerService } from '../../services/customer.service';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Customer } from '../../models/customer.model';
 
 @Component({
   selector: 'app-customers',
@@ -12,8 +13,8 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./customers.component.scss']
 })
 export class CustomersComponent implements OnInit, OnDestroy {
-  customers: any[];
-  customersOriginal: any[];
+  customers: Customer[];
+  customersOriginal: Customer[];
   searchQuery = '';
   unsubscribe = new Subject<void>();
 
@@ -68,7 +69,7 @@ export class CustomersComponent implements OnInit, OnDestroy {
     });
   }
 
-  changingValue(evt, customer) {
+  changingValue(evt, customer: Customer) {
     this.customerService.updateCustomer(customer).then(
       () => {
         this.toastr.success(`Updated status for ${customer.name}`);

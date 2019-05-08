@@ -32,10 +32,10 @@ export class NotesService {
 
   async addNote(note, customerId: string) {
     const timestamp = firebase.firestore.FieldValue.serverTimestamp();
-    const addNote: any = {
+    const addNote: Note = {
       text: note.text,
       title: note.title,
-      createdAt: timestamp
+      createdAt: timestamp.toString()
     };
 
     return this.afs.collection(`customers/${customerId}/notes`).add(addNote).then(() => true).catch(() => false);

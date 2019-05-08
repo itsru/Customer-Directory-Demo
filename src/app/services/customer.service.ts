@@ -18,7 +18,7 @@ import { AuthService } from '../core/auth.service';
 export class CustomerService {
   private customersCollection: AngularFirestoreCollection<Customer>;
   private customers: Observable<Customer[]>;
-  private user: any;
+  private user: User;
 
   constructor(
     private afs: AngularFirestore,

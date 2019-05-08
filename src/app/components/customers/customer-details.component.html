@@ -11,7 +11,7 @@
 <body class="fixed-sn light-blue-skin">
   <main class="mt-5 pt-5">
     <div class="container">
-      <!-- jumbotron -->
+      <!-- Main Info Area -->
       <div class="jumbotron text-center hoverable">
         <div *ngIf="customer" class="row">
           <div class="col-md-4 offset-md-1 mx-3 my-3">
@@ -72,18 +72,43 @@
       </div>
 
       <div class="container py-5">
-        <h2>Notes <button type="button" class="btn waves-light" data-toggle="modal" data-target="#basicExample" (click)="setModalTitle('Add a Note'); noteModal.show()"
-          mdbWavesEffect><i class="far fa-plus-square"></i> Add a Note</button>
+        <h2>
+          Notes
+          <button
+            type="button"
+            class="btn waves-light"
+            data-toggle="modal"
+            data-target="#basicExample"
+            (click)="setModalTitle('Add a Note'); noteModal.show()"
+            mdbWavesEffect
+          >
+            <i class="far fa-plus-square"></i> Add a Note
+          </button>
         </h2>
 
         <div *ngFor="let note of notes; let i = index" class="padding-bottom">
           <div class="">
             <mdb-card>
               <mdb-card-header>
-                <h4>Note {{ i + 1 }}: {{ note.title }}
-                  <button (click)="deleteNote(note.id)" class="float-right" mdbBtn ><i class="fas fa-trash-alt"></i></button>
-                  <button type="button" class="btn waves-light float-right" data-toggle="modal" data-target="#basicExample" (click)="editNote(note); noteModal.show()"
-          mdbWavesEffect><i class="fas fa-pencil-alt"></i></button>
+                <h4>
+                  Note {{ i + 1 }}: {{ note.title }}
+                  <button
+                    (click)="deleteNote(note.id)"
+                    class="float-right"
+                    mdbBtn
+                  >
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn waves-light float-right"
+                    data-toggle="modal"
+                    data-target="#basicExample"
+                    (click)="editNote(note); noteModal.show()"
+                    mdbWavesEffect
+                  >
+                    <i class="fas fa-pencil-alt"></i>
+                  </button>
                 </h4>
               </mdb-card-header>
               <mdb-card-body>
@@ -99,35 +124,81 @@
   </main>
 </body>
 
-<!-- Add Modal -->
-<div mdbModal #noteModal="mdb-modal" class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-notify modal-info" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <p class="heading lead">{{modalTitle}}</p>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="noteModal.hide()">
-        <span aria-hidden="true" class="white-text">×</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="text-center">
-        <form [formGroup]="noteForm">
-          <div class="form-group">
-            <input type="text" class="form-control" formControlName="title" id="noteTitle" placeholder="Note Title"/>
-          </div>
-          <div class="form-group">
-            <textarea class="form-control" id="noteText" formControlName="text" rows="5" placeholder="Add a note here"></textarea>
-          </div>
-        </form>
+<!-- Add / Edit Modal -->
+<div
+  mdbModal
+  #noteModal="mdb-modal"
+  class="modal fade"
+  id="noteModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-notify modal-info" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="heading lead">{{ modalTitle }}</p>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="noteModal.hide()"
+        >
+          <span aria-hidden="true" class="white-text">×</span>
+        </button>
       </div>
-    </div>
-    <div class="modal-footer justify-content-center">
-        <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="noteModal.hide(); noteForm.reset()" mdbWavesEffect>Cancel</a>
-      <a *ngIf="editingNote" type="button" class="btn btn-primary-modal waves-light" (click)="noteModal.hide(); updateNote();" mdbWavesEffect>Save Edit</a>
-      <a *ngIf="!editingNote" type="button" class="btn btn-primary-modal waves-light" (click)="noteModal.hide(); addNote()" mdbWavesEffect>Save</a>
+      <div class="modal-body">
+        <div class="text-center">
+          <form [formGroup]="noteForm">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="title"
+                id="noteTitle"
+                placeholder="Note Title"
+              />
+            </div>
+            <div class="form-group">
+              <textarea
+                class="form-control"
+                id="noteText"
+                formControlName="text"
+                rows="5"
+                placeholder="Add a note here"
+              ></textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <a
+          type="button"
+          class="btn btn-outline-secondary-modal"
+          data-dismiss="modal"
+          (click)="noteModal.hide(); noteForm.reset()"
+          mdbWavesEffect
+          >Cancel</a
+        >
+        <a
+          *ngIf="editingNote"
+          type="button"
+          class="btn btn-primary-modal waves-light"
+          (click)="noteModal.hide(); updateNote()"
+          mdbWavesEffect
+          >Save Edit</a
+        >
+        <a
+          *ngIf="!editingNote"
+          type="button"
+          class="btn btn-primary-modal waves-light"
+          (click)="noteModal.hide(); addNote()"
+          mdbWavesEffect
+          >Save</a
+        >
+      </div>
     </div>
   </div>
 </div>
-</div>
-

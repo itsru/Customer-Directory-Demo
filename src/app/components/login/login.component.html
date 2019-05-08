@@ -1,6 +1,7 @@
 <div class="displayTable">
   <div class="displayTableCell">
     <div class="authBlock">
+      <!-- If user is logged in display options  -->
       <div *ngIf="authService.currentUser | async; else showLogin">
         <h3 text-center>You're in!</h3>
         <div class="formGroup">
@@ -10,6 +11,7 @@
           <input type="button" class="btn btnSecondary" value="Logout" (click)="logout()" />
         </div>
       </div>
+      <!-- If not logged in display form -->
       <ng-template #showLogin>
         <h3>Sign In</h3>
         <form [formGroup]="loginForm">
