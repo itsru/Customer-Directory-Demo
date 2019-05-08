@@ -5,7 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from '../components/login/login.component';
 import { CustomersComponent } from '../components/customers/customers.component';
 import { CustomerDetailsComponent } from '../components/customers/customer-details.component';
-import { NoteDetailsComponent } from '../components/note-details/note-details.component';
 
 // Import guard services
 import { AuthGuard } from './auth.guard';
