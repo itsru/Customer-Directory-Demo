@@ -18,10 +18,8 @@ import { environment } from '../environments/environment';
 import { LoginComponent } from './components/login/login.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { CustomerDetailsComponent } from './components/customers/customer-details.component';
-import { NoteDetailsComponent } from './components/note-details/note-details.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FooterComponent } from './components/shared/footer/footer.component';
-// import { ModalComponent } from './components/shared/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +27,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     LoginComponent,
     CustomersComponent,
     CustomerDetailsComponent,
-    NoteDetailsComponent,
-    FooterComponent,
-    // ModalComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,

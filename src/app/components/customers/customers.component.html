@@ -25,7 +25,9 @@
             <div class="col-md-12">
               <div class="media">
                 <div class="media-body">
-                    <div class="row">
+
+                    <div class="jumbotron">
+                    <div class="row padding-bottom">
                         <div class="col-md-12 mx-auto">
                           <div class="md-form">
                             <input type="text" placeholder="Search / Filter" [(ngModel)]="searchQuery" class="form-control" id="search" mdbInput>
@@ -37,11 +39,11 @@
                         <thead>
                         <tr>
                           <th [mdbTableSort]="customers" sortBy=""></th>
-                          <th [mdbTableSort]="customers" sortBy="name">Name</th>
-                          <th [mdbTableSort]="customers" sortBy="email">Email</th>
-                          <th [mdbTableSort]="customers" sortBy="city">Location</th>
-                          <th [mdbTableSort]="customers" sortBy="createdAt">Created Date</th>
-                          <th [mdbTableSort]="customers" sortBy="status">Status</th>
+                          <th [mdbTableSort]="customers" sortBy="name">Name<mdb-icon fas icon="sort" class="ml-1"></mdb-icon></th>
+                          <th [mdbTableSort]="customers" sortBy="email">Email <mdb-icon fas icon="sort" class="ml-1"></mdb-icon></th>
+                          <th [mdbTableSort]="customers" sortBy="city">Location <mdb-icon fas icon="sort" class="ml-1"></mdb-icon></th>
+                          <th [mdbTableSort]="customers" sortBy="createdAt">Created Date <mdb-icon fas icon="sort" class="ml-1"></mdb-icon></th>
+                          <th [mdbTableSort]="customers" sortBy="status" class="th-lg">Status <mdb-icon fas icon="sort" class="ml-1"></mdb-icon></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -52,7 +54,7 @@
                           <td [routerLink]="['/customer-details', customer.id]">{{customer.email}}</td>
                           <td [routerLink]="['/customer-details', customer.id]"> {{customer.city}}, {{customer.country}}</td>
                           <td [routerLink]="['/customer-details', customer.id]">{{customer.createdAt.seconds * 1000 | date:'medium'}} </td>
-                          <td style="padding-right:1em;"><select slot="end" class='select-css'
+                          <td><select slot="end" class='select-css'
                             (change)="changingValue($event, customer)" [(ngModel)]='customer.status'>
                             <option value='prospective'>prospective</option>
                             <option value='current'>current</option>
@@ -61,6 +63,7 @@
                         </tr>
                         </tbody>
                       </table>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -72,3 +75,5 @@
 
     </div>
   </div>
+
+  <app-footer></app-footer>
