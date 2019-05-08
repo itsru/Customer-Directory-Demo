@@ -38,20 +38,20 @@ customer.
 
 ### Solution Methods
 
-⋅⋅* **Auth:** I utilized a simple auth service and guard with firebase handling the credentials, I stored a local variable to speed up session replays.
-⋅⋅* **Customer List/Search/Sort:** I utilized a simple filter to traverse the variables in within each customer to allow the search to work over the most common variables.
-⋅⋅* **Status** The way I understood the requirements it seemed necessary to be able to set a status from the list view itself. So I implemented on both views.
-⋅⋅* **Notes** I utilized a single modal to display add/edit capability without having to navigate away. 
+- **Auth:** I utilized a simple auth service and guard with firebase handling the credentials, I stored a local variable to speed up session replays.
+- **Customer List/Search/Sort:** I utilized a simple filter to traverse the variables in within each customer to allow the search to work over the most common variables.
+- **Status** The way I understood the requirements it seemed necessary to be able to set a status from the list view itself. So I implemented on both views.
+- **Notes** I utilized a single modal to display add/edit capability without having to navigate away. 
 
 ### Known Issues
 
-1. npm will inform you of a high severity security vulnerability detected in tar < 4.4.2 and request you to update to ~> 4.4.2. This is a known issue with node-sass and is pending a release to resolve shortly. 
+- npm will inform you of a high severity security vulnerability detected in tar < 4.4.2 and request you to update to ~> 4.4.2. This is a known issue with node-sass and is pending a release to resolve shortly. 
 
 ### Additional Links and Resources
 
-Angular - https://github.com/angular
-AngularFire2 - https://github.com/angular/angularfire2
-Firebase - https://firebase.google.com/
+- Angular - https://github.com/angular
+- AngularFire2 - https://github.com/angular/angularfire2
+- Firebase - https://firebase.google.com/
 
 ### Attributions
 
