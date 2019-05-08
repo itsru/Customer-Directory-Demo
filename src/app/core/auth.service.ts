@@ -7,7 +7,6 @@ import {
   DocumentReference,
   AngularFirestoreDocument
 } from '@angular/fire/firestore';
-// User
 import { Router } from '@angular/router';
 import { Note } from '../models/note.model';
 import { User } from '../models/user.model';
@@ -35,6 +34,11 @@ export class AuthService {
       }),
       tap(user => localStorage.setItem('user', JSON.stringify(user)))
     );
+  }
+
+  getCurrentUser() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user !== null ? user : false;
   }
 
   // check if user is logged in

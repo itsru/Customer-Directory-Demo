@@ -26,11 +26,11 @@ export class CustomerService {
     private afAuth: AngularFireAuth
   ) {
 
-    this.user = this.authService.currentUser;
+    this.user = this.authService.getCurrentUser();
     this.customersCollection = afs.collection<Customer>('customers');
 
     const thisUsersCustomerCollection = afs.collection<Customer>('customers', ref =>
-      ref.where('userId', '==', 'xSe6n8adYMPK0MsMxLv00ZCT5dE2') // TODO : Get current uid
+      ref.where('userId', '==', this.user.uid)
     );
 
     this.customers = thisUsersCustomerCollection.snapshotChanges().pipe(
