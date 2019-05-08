@@ -1,0 +1,59 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+  	match /users/{userID}
+    {
+      // No deletes allowed - cloudfunction can remove secure data
+    	allow read, create, update: if uidMatched(userID);
+    }
+    match /customers/{customerID}{
+
+      // Allow read and deletes for owned clients
+      allow read, delete: if uidMatched(resource.data.userId);
+
+      // Only allow creation of clients for self with valid data
+      allow create: if resourceIsValidCustomer();
+
+      // Only allow an update if the customer belongs to that user (no stealing customers)
+      allow update: if resourceIsValidCustomer() && uidMatched(resource.data.userId);
+
+      // Get customer data for note verification
+      function customerData() {
+      	return get(/databases/$(database)/documents/customers/$(customerID)).data
+      }
+
+      match /notes/{noteID}{
+        // allow read and deletes of existing clients notes
+      	allow read, delete: if uidMatched(customerData().userId);
+
+        // allow create and update under own clients
+        allow create, update: if resourceIsValidNote(customerData());
+      }
+    }
+  }
+
+  // Verify that the user is signed in and the users auth uid matches the passed in id variable
+  function uidMatched(id)
+  {
+  	return (isSignedIn() && request.auth.uid == id);
+  }
+
+  // Verify that the user is signed in
+  function isSignedIn() {
+    return request.auth != null;
+  }
+
+  // Verify that the create, update data is correct for the Customer
+  function resourceIsValidCustomer() {
+  	return request.resource.data.name is string &&
+    request.resource.data.email is string &&
+    request.resource.data.status is string &&
+    uidMatched(request.resource.data.userId);
+  }
+
+  // Verify that the create, update data is valid and the note is for an existing Customer owned by the user
+  function resourceIsValidNote(customerData) {
+  	return request.resource.data.text is string &&
+    request.resource.data.title is string &&
+    uidMatched(customerData.userId);
+  }
+}
