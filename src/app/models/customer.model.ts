@@ -9,6 +9,6 @@ export interface Customer {
   postcode: string;
   userId: string;
   status: string;
-  createdAt?: string;
+  createdAt?: any;
   imageUrl?: string;
 }

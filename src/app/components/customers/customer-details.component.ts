@@ -145,16 +145,6 @@ export class CustomerDetailsComponent implements OnInit, OnDestroy {
       );
   }
 
-  call() {
-    const url = `tel:${this.customer.phone}`;
-    this.router.navigateByUrl(url);
-  }
-
-  email() {
-    const mailurl = `mailto:${this.customer.email}`;
-    this.router.navigateByUrl(mailurl);
-  }
-
   changingValue(evt, customer: Customer) {
     this.customerService
       .updateCustomer(customer)

@@ -38,14 +38,10 @@
             <h4 class="h4 mb-4">{{ customer.name }}</h4>
 
             <p class="font-weight-normal">
-              <a (click)="phone()"
-                ><strong>Phone: </strong> {{ customer.phone }}</a
-              >
+              <strong>Phone: </strong><a href="tel:{{customer.phone}}" target="_blank">{{customer.phone}}</a>
             </p>
             <p class="font-weight-normal">
-              <a (click)="email()"
-                ><strong>Email: </strong> {{ customer.email }}</a
-              >
+              <strong>Email: </strong><a href="mailto:{{customer.email}}" target="_blank">{{customer.email}}</a>
             </p>
             <p class="font-weight-normal">
               <strong>Address: </strong> {{ customer.street }},
