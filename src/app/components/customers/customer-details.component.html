@@ -44,9 +44,9 @@
               <strong>Email: </strong><a href="mailto:{{customer.email}}" target="_blank">{{customer.email}}</a>
             </p>
             <p class="font-weight-normal">
-              <strong>Address: </strong> {{ customer.street }},
+              <strong>Address: </strong> <a href="https://www.google.com/maps/search/?api=1&query={{customer.street}}+{{customer.city}}+{{customer.country}}" target="_blank">{{ customer.street }},
               {{ customer.city }}, {{ customer.postcode }},
-              {{ customer.country }}.
+              {{ customer.country }}</a>
             </p>
             <p class="font-weight-normal">
               Added {{ customer.createdAt.seconds * 1000 | date: "medium" }}
