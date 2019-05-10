@@ -1,4 +1,4 @@
-# Customer directory demo PWA 
+# Customer directory demo
 
 ### Stack used
 
